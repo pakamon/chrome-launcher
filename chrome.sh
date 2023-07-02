@@ -1,6 +1,8 @@
 #!/bin/bash
 
-FILE_PATH="list.txt"
+BASE_DIRECTORY="$HOME/chrome-launcher"
+mkdir -p "$BASE_DIRECTORY"
+FILE_PATH="$BASE_DIRECTORY/list.txt"
 
 # Check if file exists, if not, create it
 if [[ ! -e $FILE_PATH ]]; then
@@ -15,8 +17,9 @@ echo ""
 create_new_dir() {
     echo ""
     read -p "Please enter the name for the new directory: " new_dir_name
-    mkdir "./$new_dir_name"
-    echo "$(pwd)/$new_dir_name" >> $FILE_PATH
+    new_dir_path="$BASE_DIRECTORY/$new_dir_name"
+    mkdir "$new_dir_path"
+    echo "$new_dir_path" >> $FILE_PATH
     echo "New directory '$new_dir_name' has been created and added to the list."
     echo ""
 }
